@@ -4,13 +4,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Mastermind</title>
-
-
+    <link rel="stylesheet" href="lib/bootstrap_v3.37/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mastermind.css">
+    <script src="lib/jQuery_v3.1.0/jquery-3.1.0.js"></script>
 </head>
 
 <body>
 
-
+    <div class="container">
+        <div class="col-md-12" id="play-area">
+            <div id="board" class="col-md-8"></div>
+            <div id="toolbar" class="col-md-4">Click on the color to place the peg
+                <div id="color-buttons" class="row"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/colors.js"></script>
+    <script src="js/mastermind.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,28 @@
+#play-area {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 100px;
+    width: 70%;
+}
+#board {
+    width: auto;
+    border: 2px solid #c9c9c9;
+    background-color: #d9d9d9;
+}
+#toolbar {
+    float: right;
+}
+.mm-row {
+    margin: auto;
+}
+.mm-block {
+    height: auto;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.board-row {
+    margin: 10px;
+    border: 2px solid #c9c9c9;
+    background-color: white;
+}
