@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="lib/bootstrap_v3.37/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mastermind.css">
     <script src="lib/jQuery_v3.1.0/jquery-3.1.0.js"></script>
+    <script src="lib/bootstrap_v3.37/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -21,21 +22,49 @@
 
                 <div id="optionbar">
                     <hr>
-                    <button class="btn btn-primary" id="check-row" onClick="checkRow()">Check row</button>
+                    <button class="btn btn-primary" id="check-row" onClick="checkRow()">Check guess</button>
 
                     <button class="btn btn-default" onclick="retryRow()">Retry row</button>
+                    <hr>
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#game-rules">Game rules</button>
                     <hr>
                     <button class="btn btn-default" onclick="loadNewGame()">New game</button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="js/gameDefs.js"></script>
-    <script src="js/mastermind.js"></script>
-    <script>
-        loadNewGame();
+    <div id="game-rules" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-    </script>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Game rules</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>The computer has selected a 4-color pattern and you have to guess the pattern within 10 guesses.</strong>
+                        <br>
+                        <br> Click the color pegs to add your combination and click <b>"Check guess"</b> button and the machine will use black and white score pegs to give you clues on the entered combination.
+                        <br>
+                        <br> Each white peg indicates that one of your pegs is in the right position.
+                        <br>Each black peg indicates that one of your pegs is the right color AND the right position.
+                        <br> 4 black pegs indicate that you have won!
+                        <br>
+                        <br>Use the clues to guess the correct combination within 10 tries.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        <script src="js/gameDefs.js"></script>
+        <script src="js/mastermind.js"></script>
+        <script>
+            loadNewGame();
+
+        </script>
 </body>
 
 </html>
