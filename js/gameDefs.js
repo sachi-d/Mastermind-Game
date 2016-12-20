@@ -19,6 +19,8 @@ var Game = {
             src: "images/purple.gif"
         }
     },
+    blackButton: "images/black.png",
+    whiteButton: "images/white.jpg",
     checkButton: $("#check-row"),
     colorCode: ["red", "red", "red", "red"]
 }

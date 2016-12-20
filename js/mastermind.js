@@ -10,7 +10,8 @@
 function initializeBoard() {
     var $board = $("#board");
 
-    var blankPeg = "images/blank.png"
+    var blankPeg = "images/blank.jpg",
+        blankResult = "images/blank.png";
 
     //add 10 rows
     for (var i = 0; i < 10; i++) {
@@ -44,8 +45,8 @@ function initializeBoard() {
             for (var kk = 0; kk < 2; kk++) {
                 var $res = $("<img>", {
                     class: "result",
-                    id: "result-" + i + "-" + k + "-" + kk,
-                    src: blankPeg,
+                    id: "result-" + i + "-" + Number(k * 2 + kk),
+                    src: blankResult,
                     width: 20
                 });
                 $resRow.append($res);
@@ -81,15 +82,45 @@ function updatePegs(clicked) {
 
         tempColCode[activePeg] = clicked.id;
         activePeg++;
-    } else {
-        Game.checkButton.prop('disabled', false);
+
+        if (activePeg === 4) {
+            Game.checkButton.prop('disabled', false);
+        }
     }
 
 }
 
 //check the pattern of row
 function checkRow() {
-    console.log(tempColCode);
+    //The logic of the game
+
+    //calculating black and white dots
+    var dots = [],
+        blackCount = 0;
+    tempColCode.map(function (userColor, index) {
+        if (Game.colorCode[index] == userColor) {
+            dots.push("blackButton");
+            blackCount++;
+        } else {
+            if (Game.colorCode.indexOf(userColor) > -1) {
+                dots.push("whiteButton");
+            }
+        }
+    });
+
+    dots.map(function (butn, index) {
+        $("#result-" + activeRow + "-" + index).attr("src", Game[butn]);
+    });
+
+    //check if all 4 combinations are black
+    if (blackCount === 4) {
+        alert("You have won the game!");
+    } else {
+        if (activeRow === 9) {
+            alert("Sorry try again");
+        }
+    }
+
     tempColCode = [];
     updateRowDisplay();
 }
@@ -118,5 +149,6 @@ function setNewCode() {
     for (var i = 0; i < 4; i++) {
         keyGen.push(colorKeys[Math.floor(Math.random() * colorKeys.length)]);
     }
+    console.log(keyGen);
     return keyGen;
 }
