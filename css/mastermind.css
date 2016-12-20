@@ -12,11 +12,17 @@
 #toolbar {
     float: right;
 }
+#color-buttons {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#optionbar {
+    text-align: center;
+}
 .mm-row {
     margin: auto;
 }
 .mm-block {
-    height: auto;
     margin: 10px;
     display: inline-block;
     vertical-align: middle;

@@ -1,6 +1,10 @@
 (function init() {
     initializeBoard();
     initializeToolbar();
+    Game.colorCode = setNewCode();
+    activePeg = 0;
+    activeRow = -1;
+    updateRowDisplay();
 }());
 
 function initializeBoard() {
@@ -58,18 +62,61 @@ function initializeBoard() {
 function initializeToolbar() {
     var $colorbuttons = $("#color-buttons");
 
-    for (var key of Object.keys(colors)) {
+    for (var key of Object.keys(Game.colors)) {
         var $button = $('<input>', {
             type: 'image',
             id: key,
-            src: colors[key].src,
+            src: Game.colors[key].src,
             width: '40',
-            onclick: 'updateColorRow(this)'
+            onclick: 'updatePegs(this)'
         });
         $colorbuttons.append($button);
     }
 }
 
-function updateColorRow(clicked) {
-    console.log(clicked.id);
+//click function of pegs
+function updatePegs(clicked) {
+    if (activePeg < 4) {
+        $("#peg-" + activeRow + "-" + activePeg).attr("src", Game.colors[clicked.id].src);
+
+        tempColCode[activePeg] = clicked.id;
+        activePeg++;
+    } else {
+        Game.checkButton.prop('disabled', false);
+    }
+
+}
+
+//check the pattern of row
+function checkRow() {
+    console.log(tempColCode);
+    tempColCode = [];
+    updateRowDisplay();
+}
+
+function updateRowDisplay() {
+    Game.checkButton.prop('disabled', true);
+    $("#row-" + activeRow).css({
+        "border-color": "#c9c9c9"
+    });
+    activePeg = 0;
+    activeRow++;
+    $("#row-" + activeRow).css({
+        "border-color": "red"
+    });
+}
+
+function loadNewGame() {
+
+}
+
+
+//generate new color pattern
+function setNewCode() {
+    var colorKeys = Object.keys(Game.colors);
+    var keyGen = [];
+    for (var i = 0; i < 4; i++) {
+        keyGen.push(colorKeys[Math.floor(Math.random() * colorKeys.length)]);
+    }
+    return keyGen;
 }

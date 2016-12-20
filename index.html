@@ -14,12 +14,23 @@
     <div class="container">
         <div class="col-md-12" id="play-area">
             <div id="board" class="col-md-8"></div>
-            <div id="toolbar" class="col-md-4">Click on the color to place the peg
+            <div id="toolbar" class="col-md-4">
+                <h4> Click on the color to place the peg
+                </h4>
                 <div id="color-buttons" class="row"></div>
+
+                <div id="optionbar">
+                    <hr>
+                    <button class="btn btn-primary" id="check-row" onClick="checkRow()">Check row</button>
+
+                    <button class="btn btn-default">Cancel row</button>
+                    <hr>
+                    <button class="btn btn-default" onclick="loadNewGame()">New game</button>
+                </div>
             </div>
         </div>
     </div>
-    <script src="js/colors.js"></script>
+    <script src="js/gameDefs.js"></script>
     <script src="js/mastermind.js"></script>
 </body>
 
