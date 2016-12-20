@@ -1,17 +1,14 @@
-(function init() {
+function init() {
     initializeBoard();
     initializeToolbar();
     Game.colorCode = setNewCode();
     activePeg = 0;
     activeRow = -1;
     updateRowDisplay();
-}());
+}
 
 function initializeBoard() {
     var $board = $("#board");
-
-    var blankPeg = "images/blank.jpg",
-        blankResult = "images/blank.png";
 
     //add 10 rows
     for (var i = 0; i < 10; i++) {
@@ -28,7 +25,7 @@ function initializeBoard() {
             var $peg = $('<img>', {
                 class: "peg",
                 id: "peg-" + i + "-" + j,
-                src: blankPeg,
+                src: Game.blankPeg,
                 width: '40'
             });
             $pegBar.append($peg);
@@ -46,7 +43,7 @@ function initializeBoard() {
                 var $res = $("<img>", {
                     class: "result",
                     id: "result-" + i + "-" + Number(k * 2 + kk),
-                    src: blankResult,
+                    src: Game.blankResult,
                     width: 20
                 });
                 $resRow.append($res);
@@ -62,7 +59,9 @@ function initializeBoard() {
 
 function initializeToolbar() {
     var $colorbuttons = $("#color-buttons");
-
+    if ($colorbuttons.children().length > 0) {
+        return;
+    }
     for (var key of Object.keys(Game.colors)) {
         var $button = $('<input>', {
             type: 'image',
@@ -138,9 +137,16 @@ function updateRowDisplay() {
 }
 
 function loadNewGame() {
-
+    $("#board").empty();
+    init();
 }
 
+function retryRow() {
+    for (var i = 0; i < 4; i++) {
+        $("#peg-" + activeRow + "-" + i).attr("src", Game.blankPeg);
+    }
+    activePeg = 0;
+}
 
 //generate new color pattern
 function setNewCode() {
@@ -149,6 +155,5 @@ function setNewCode() {
     for (var i = 0; i < 4; i++) {
         keyGen.push(colorKeys[Math.floor(Math.random() * colorKeys.length)]);
     }
-    console.log(keyGen);
     return keyGen;
 }

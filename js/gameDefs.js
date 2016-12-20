@@ -22,6 +22,8 @@ var Game = {
     blackButton: "images/black.png",
     whiteButton: "images/white.jpg",
     checkButton: $("#check-row"),
+    blankPeg: "images/blank.jpg",
+    blankResult: "images/blank.png",
     colorCode: ["red", "red", "red", "red"]
 }
 

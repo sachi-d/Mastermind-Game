@@ -23,7 +23,7 @@
                     <hr>
                     <button class="btn btn-primary" id="check-row" onClick="checkRow()">Check row</button>
 
-                    <button class="btn btn-default">Cancel row</button>
+                    <button class="btn btn-default" onclick="retryRow()">Retry row</button>
                     <hr>
                     <button class="btn btn-default" onclick="loadNewGame()">New game</button>
                 </div>
@@ -32,6 +32,10 @@
     </div>
     <script src="js/gameDefs.js"></script>
     <script src="js/mastermind.js"></script>
+    <script>
+        loadNewGame();
+
+    </script>
 </body>
 
 </html>
