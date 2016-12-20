@@ -1,16 +1,20 @@
 #play-area {
     border: 1px solid black;
     padding: 20px;
-    margin: 100px;
+    margin: 50px;
     width: 70%;
+    text-align: center;
 }
 #board {
     width: auto;
     border: 2px solid #c9c9c9;
     background-color: #d9d9d9;
+    margin: 10px;
 }
 #toolbar {
+    margin: auto;
     float: right;
+    margin: 20px 20px 0 20px;
 }
 #color-buttons {
     margin-top: 20px;
