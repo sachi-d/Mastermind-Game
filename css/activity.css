@@ -1,0 +1,60 @@
+#main-toolbar #activity-button {
+    background-image: url(../activity/mastermind.png);
+}
+#main-toolbar #load-game {
+    background-image: url(../activity/refresh.svg);
+}
+#main-toolbar #show-solution {
+    cursor: pointer;
+    background-image: url(../activity/bulb.png);
+}
+#activity-palette .container {
+    /*    display: block;*/
+    width: auto;
+    padding: 0;
+}
+#activity-palette .container .row {
+    width: 100%;
+    padding: 2px;
+}
+#activity-palette .container textarea {
+    height: 130px;
+}
+#play-area {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 50px;
+    width: 70%;
+    text-align: center;
+}
+#board {
+    width: auto;
+    border: 2px solid #c9c9c9;
+    background-color: #d9d9d9;
+    margin: 10px;
+}
+#toolbar {
+    margin: auto;
+    float: right;
+    margin: 20px 20px 0 10px;
+}
+#color-buttons {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#optionbar {
+    text-align: center;
+}
+.mm-row {
+    margin: 0;
+}
+.mm-block {
+    margin: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.board-row {
+    margin: 10px;
+    border: 2px solid #c9c9c9;
+    background-color: white;
+}

@@ -2,72 +2,89 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
     <title>Mastermind</title>
-    <link rel="stylesheet" href="lib/bootstrap_v3.37/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/mastermind.css">
-    <script src="lib/jQuery_v3.1.0/jquery-3.1.0.js"></script>
-    <script src="lib/bootstrap_v3.37/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <link rel="stylesheet" media="not screen and (device-width: 1200px) and (device-height: 900px)" href="lib/sugar-web/graphics/css/sugar-96dpi.css">
+    <link rel="stylesheet" media="screen and (device-width: 1200px) and (device-height: 900px)" href="lib/sugar-web/graphics/css/sugar-200dpi.css">
+    <link rel="stylesheet" href="css/activity.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script data-main="js/loader" src="lib/require.js"></script>
 </head>
 
 <body>
+    <div id="main-toolbar" class="toolbar">
+        <button class="toolbutton" id="activity-button" title="My Activity"></button>
 
-    <div class="container">
-        <div class="header">
-            <h1>  The online version of the popular classic boardgame - Mastermind!</h1>
-        </div>
-        <div class="col-md-12" id="play-area">
-            <div id="board" class="col-md-8"></div>
-            <div id="toolbar" class="col-md-4">
-                <h4> Click on the color to place the peg
-                </h4>
-                <div id="color-buttons" class="row"></div>
-
-                <div id="optionbar">
-                    <hr>
-                    <button class="btn btn-primary" id="check-row" onClick="checkRow()">Check guess</button>
-
-                    <button class="btn btn-default" onclick="retryRow()">Retry row</button>
-                    <hr>
-                    <button class="btn btn-warning" data-toggle="modal" data-target="#game-rules">Game rules</button>
-                    <hr>
-                    <button class="btn btn-default" onclick="loadNewGame()">New game</button>
-                </div>
-            </div>
-        </div>
+        <!-- Add more buttons here -->
+        <button class="toolbutton" id="load-game" title="New Game"></button>
+        <button class="toolbutton" id="show-solution" title="Show Solution"></button>
+        <!-- Buttons with class="pull-right" will be right aligned -->
+        <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
     </div>
-    <div id="game-rules" class="modal fade" role="dialog">
-        <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Game rules</h4>
-                </div>
-                <div class="modal-body">
-                    <p><strong>The computer has selected a 4-color pattern and you have to guess the pattern within 10 guesses.</strong>
-                        <br>
-                        <br> Click the color pegs to add your combination and click <b>"Check guess"</b> button and the machine will use black and white score pegs to give you clues on the entered combination.
-                        <br>
-                        <br> Each white peg indicates that one of your pegs is in the right position.
-                        <br>Each black peg indicates that one of your pegs is the right color AND the right position.
-                        <br> 4 black pegs indicate that you have won!
-                        <br>
-                        <br>Use the clues to guess the correct combination within 10 tries.
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <!-- The content of your activity goes inside the canvas -->
+    <div id="canvas">
+        <div class="container">
+            <div class="header">
+                <h1>  The online version of the popular classic boardgame - Mastermind!</h1>
+            </div>
+            <div class="col-md-12" id="play-area">
+                <div id="board" class="col-md-7"></div>
+                <div id="toolbar" class="col-md-5">
+                    <h4> Click on the color to place the peg
+                </h4>
+                    <div id="color-buttons" class="row"></div>
+
+                    <div id="optionbar">
+                        <hr>
+
+                        <button class="btn btn-primary" id="check-row">Check guess</button>
+
+                        <button class="btn btn-default" id="retry-row">Retry row</button>
+                        <hr>
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#game-rules">Game rules</button>
+                        <hr>
+                        <div id="solution" class="row">Solution:
+                            <br>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <script src="js/gameDefs.js"></script>
-        <script src="js/mastermind.js"></script>
-        <script>
-            loadNewGame();
+        <div id="game-rules" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-        </script>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Game rules</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>The computer has selected a 4-color pattern and you have to guess the pattern within 10 guesses.</strong>
+                            <br>
+                            <br> Click the color pegs to add your combination and click <b>"Check guess"</b> button and the machine will use black and white score pegs to give you clues on the entered combination.
+                        </p>
+
+                        <ul>
+                            <li>Each white peg indicates that one of your pegs is in the right position. </li>
+                            <li>Each black peg indicates that one of your pegs is the right color AND the right position.</li>
+                            <li> 4 black pegs indicate that you have won!
+                            </li>
+                        </ul>
+                        <p>Use the clues to guess the correct combination within 10 tries.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 
 </html>
